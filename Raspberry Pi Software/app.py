@@ -169,7 +169,7 @@ async def controlLoop():
         # Configure and run the hexapod engine
         Hex.gSeq = waveGait
         Hex.walkX = jX
-        Hex.walkY = 0.1#test instead of jY
+        Hex.walkY = jY
         Hex.walkR = jR
         Hex.gaitStep()
         Hex.runBodyIK()
@@ -436,7 +436,8 @@ async def position(sid, message):
 @sio.on('power')
 async def position(sid, message):
     if message == 1:
-        print('power down')
+        print('Shutting down...')
+        os.system("sudo shutdown -h now") 
 
 app.router.add_get('/', index)
 
